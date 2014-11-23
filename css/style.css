@@ -1,0 +1,12 @@
+#test_id{
+	background: lightblue;
+	height:100px;
+	width: 100px;
+	
+}
+#test_id div{
+    width: 5px;
+	height: 5px;
+	background: transparent;
+	
+}
