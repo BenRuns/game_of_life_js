@@ -89,6 +89,7 @@ var plot_point = function(array){
 	grid.style.boxShadow=points;
 
     };
+
 var neighbors = function(x,y){
 	var x = x;
 	var y = y;
@@ -132,7 +133,14 @@ var next_state = function(cells){
 	
 
 		if (2 === count || count === 3 ){
-			next_states.push(cells[point]);
+			
+			if (!contains_point(cells[point], next_states)){
+				 next_states.push(cells[point]);
+
+
+				
+				
+			    };
 		};
 
 
@@ -164,16 +172,29 @@ var next_state = function(cells){
 
 var test_inputs = [[2,15],[2,14],[2,13],[1,13],[0,14]];
 
-var run_sim = function(cells) {
-	var next = test_inputs;
-	var x;
-
+var intID;
+var next;
+var run_sim = function() {
+	next = test_inputs;
 	
 
-    setInterval(function() {plot_point(next); next = next_state(next);}, 500);
+
+    intID = setInterval(function() {plot_point(next); next = next_state(next); }, 500);
+
 	
 
 	};
+var clear_sim = function() {
+	stop_sim();
+	test_inputs = [];
+	plot_point(test_inputs);
+}
+
+var stop_sim = function() {
+	clearInterval(intID);
+	test_inputs = next;
+}
+
 
 var add_points = function(){
 	var user_input = document.getElementById("grid_size").value 
@@ -181,6 +202,7 @@ var add_points = function(){
 
 	var grid_size = user_input > 25 ? user_input : 25;
 	var i;
+
 	for( i=0;i < added_cells; i++ ){
 		 var x = Math.floor(Math.random() * (grid_size -1)) + 1;
 		 var y = Math.floor(Math.random() * (grid_size -1)) + 1;
@@ -191,7 +213,11 @@ var add_points = function(){
 
 
 document.getElementById('start').onclick=run_sim;
+document.getElementById("stop").onclick=stop_sim;
+document.getElementById("clear").onclick=clear_sim;
+
 document.getElementById("add_cells").onclick=add_points;
+
 
 
 document.getElementById('test_button').onclick=add_thing;
