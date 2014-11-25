@@ -72,8 +72,13 @@ var add_thing = function(){
 
 
 var plot_point = function(array){
+	track_iteration()
+
 	var array = array;
 	var grid = document.getElementById("test_id").children[0];
+	var population_div = document.getElementById("population");
+	population_div.innerHTML = (array.length + " cells")
+
 	var points = "";
 	var i;
 	for (i = 0; i < array.length; i++){
@@ -106,6 +111,7 @@ var neighbors = function(x,y){
 
 
 var neighbors_count = function(x,y,cells){
+	//takes a sorted array
 	var count = 0;
 	var to_check = neighbors(x,y);
 	var cells = cells;
@@ -170,16 +176,28 @@ var next_state = function(cells){
 	return next_states
 };
 
-var test_inputs = [[2,15],[2,14],[2,13],[1,13],[0,14]];
+var track_iteration = function(iteration){
+	var iteration = iteration;
+	var iteration_div = document.getElementById("iteration");
+	iteration_div.innerHTML =  iteration +" iterations";
+}
+
+var test_inputs = [];
+ 
 
 var intID;
 var next;
+
 var run_sim = function() {
 	next = test_inputs;
+	var x = 0;
+	track_iteration(x)
+
+
 	
 
 
-    intID = setInterval(function() {plot_point(next); next = next_state(next); }, 500);
+    intID = setInterval(function() { x = x +1;  plot_point(next); next = next_state(next); track_iteration(x); }, 10);
 
 	
 
@@ -188,6 +206,7 @@ var clear_sim = function() {
 	stop_sim();
 	test_inputs = [];
 	plot_point(test_inputs);
+	track_iteration(0)
 }
 
 var stop_sim = function() {
@@ -200,7 +219,7 @@ var add_points = function(){
 	var user_input = document.getElementById("grid_size").value 
 	var added_cells = document.getElementById("cells").value 
 
-	var grid_size = user_input > 25 ? user_input : 25;
+	var grid_size = user_input > 70 ? user_input : 70;
 	var i;
 
 	for( i=0;i < added_cells; i++ ){
@@ -212,6 +231,8 @@ var add_points = function(){
 }
 
 
+add_points();
+run_sim();
 document.getElementById('start').onclick=run_sim;
 document.getElementById("stop").onclick=stop_sim;
 document.getElementById("clear").onclick=clear_sim;
