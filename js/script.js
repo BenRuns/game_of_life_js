@@ -227,7 +227,7 @@ var add_points = function(){
 
 
 add_points();
-run_sim();
+
 document.getElementById('start').onclick=run_sim;
 document.getElementById("stop").onclick=stop_sim;
 document.getElementById("clear").onclick=clear_sim;

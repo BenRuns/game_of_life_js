@@ -1,5 +1,5 @@
 body{
-	background:  radial-gradient(lightblue, blue, lightblue);
+	
 	height: 100%;
 	font-family: 'Signika', sans-serif;
 
@@ -12,6 +12,7 @@ nav{
 	width: 100%;
 	background:  rgba(255,255,255,.4);
 	border-radius: 5px;
+
 	
 
 
@@ -62,6 +63,20 @@ nav li:hover, button:hover{
 	
 
 }
+#horizon{
+	position: absolute;
+	height: 50%;
+	width: 105%;
+	margin-left:-2%;
+	padding: 0;
+	
+	border-bottom: 1px solid rgba(0,0,0,.8);
+	z-index: -5;
+	-webkit-box-shadow:  7px -20px 39px -31px rgba(0,0,0,0.75);
+	-moz-box-shadow: 7px -20px 39px -31px rgba(0,0,0,0.75);
+	box-shadow: inset 7px -20px 39px -31px rgba(0,0,0,0.75);
+
+}
 .container{
 	width:400px;
 	margin: auto;
@@ -103,14 +118,15 @@ nav li:hover, button:hover{
 
 
 #test_id{
-	background:  rgba(255,255,255,.4);
+	background:  rgba(255,255,255,.98);
 	height:350px;
 	width: 350px;
 	border-radius: 10px;
 	padding: 10px;
 	margin:auto;
 	margin-top: 50px;
-/*	box-shadow: 4px 10px .8px #75975c;*/
+	box-shadow: -5px 5px 40px rgba(0,0,0,.8);
+
 
 
 	
@@ -123,4 +139,11 @@ nav li:hover, button:hover{
 	background: transparent;
 	z-index: 1;
 	
+}
+@media screen and (max-width : 768px)  {
+ 
+}
+
+
+
 }
