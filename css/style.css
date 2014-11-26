@@ -1,12 +1,120 @@
+body{
+	background:  radial-gradient(lightblue, blue, lightblue);
+	height: 100%;
+	font-family: 'Signika', sans-serif;
+
+}
+
+nav{
+	display: inline-block;
+	text-decoration: none;
+	list-style: none;
+	width: 100%;
+	background:  rgba(255,255,255,.4);
+	border-radius: 5px;
+	
+
+
+
+}
+nav ul{
+	margin-left: -30px;
+}
+h1, h4{
+	text-align: center;
+
+	
+
+
+}
+
+
+nav li{
+	background: lightgrey;
+	list-style: none;
+	float: left;
+	padding: .5%;
+	margin: 1%;
+	width: 30%;
+	border-bottom: 2px solid rgba(138,129,90,.7);
+	border-right: 1px solid rgba(138,129,90,.6);
+	border-radius: 4px;
+	 
+}
+nav a{
+	text-decoration: none;
+
+
+}
+button{
+	border-radius: 4px;
+	border-bottom: 2px solid rgba(138,129,90,.7);
+	border-right: 1px solid rgba(138,129,90,.6);
+}
+nav li:hover, button:hover{
+	background: grey;
+	border-top: 2px solid lightgrey;
+	border-left: 1px solid lightgrey;
+
+	
+
+}
+.container{
+	width:400px;
+	margin: auto;
+
+}
+
+
+.dashboard{
+	position: absolute;;
+	background: rgba(45, 57, 125, 0.6);
+	border: black solid;
+	
+	z-index: 2;
+	margin-left: -80px;
+
+}
+.dashboard input{
+	margin-left: 10px;
+	margin-top: 5px;
+
+	width: 40px;
+
+}
+.dashboard button{
+	width: 50px;
+	height: 20px;
+	margin: 5px 4px;
+}
+#population, #iteration{
+	background:  rgba(255, 255, 255, 0.5);
+	text-align: left;
+	padding: 2px;
+	margin:auto;
+	width: 100px;
+}
+
+
 #test_id{
-	background: lightblue;
-	height:300px;
-	width: 300px;
+	background:  rgba(255,255,255,.4);
+	height:350px;
+	width: 350px;
+	border-radius: 10px;
+	padding: 10px;
+	margin:auto;
+	margin-top: 50px;
+/*	box-shadow: 4px 10px .8px #75975c;*/
+
+
 	
 }
 #test_id div{
-    width: 5px;
-	height: 5px;
+    width: 4.9px;
+	height: 4.9px;
+	padding: .5px;
+	border-radius:100%;
 	background: transparent;
+	z-index: 1;
 	
 }

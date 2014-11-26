@@ -4,62 +4,78 @@
 	<head>
 
 		<title> Conway's Game of Life </title>
+		<link href='http://fonts.googleapis.com/css?family=Signika:400,700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="css/style.css">
 
 	</head>
 
 	<body>
+		<div class="container">
+			<nav>
 
-    	<input type="number" id="grid_size" >
+			<h1> Conway's Game of Life <h1>
+			<h4> Solution and visualization written by Ben Patterson </h4>
 
+			
+				<ul>
 
-	    <button type="button" id="test_button" >
-
-			Set field size!
-	    </button>
-
-	    <br>
-
-    	<input type="number" id="cells" value=1000 >
-
-
-
-    	<button type="button" id="add_cells" >
-
-			Seed the board
-		</button>
-		<br>
+					<a href="https://github.com/BenRuns/game_of_life_js"> <li>  Code </li></a>
+					<a href="http://patterson-ben.appspot.com/"> <li> My website</li></a> 
+					<a href="mailto:bentomaspatterson@gmail.com"> <li> Contact me </li></a>
+				</ul>
+			</nav>
 
 
-    	<button type="button" id="start" >
+			<div class="dashboard">
 
-	    	Start!
-		</button>
 
-        <button type="button" id="stop" >
+			
 
-			Stop!
-
- 		</button>
-
- 		<button type="button" id="clear" >
-
-			clear
-
- 		</button>
- 		<div id="population">0 cells </div>
- 		<div id="iteration"> </div>
+		    	<input type="number" id="cells" value=1000 >
 
 
 
-  <div id="test_id">
-  	
-  	
-  	<div>
-  		
-  	</div>
+		    	<button type="button" id="add_cells" >
 
-  </div>
+					Seed the board
+				</button>
+				<br>
+
+
+		    	<button type="button" id="start" >
+
+			    	Start!
+				</button>
+
+		        <button type="button" id="stop" >
+
+					Stop!
+
+		 		</button>
+
+	
+
+		 		<div id="population">0 cells </div>
+		 		<div id="iteration"> </div>
+
+		 		<button type="button" id="clear" >
+
+					clear
+
+		 		</button>
+		 	</div>
+
+
+
+		  	<div id="test_id">
+		  	
+		  	
+		  		<div >
+		  		
+		  		</div>
+
+		  	</div>
+	  </div>
 
 
 	</body>

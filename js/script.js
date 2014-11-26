@@ -20,6 +20,8 @@ function sortFunction(a, b) {
     }
 }
 
+
+
 function binary_contains(point,array){
 	if (array.length === 0){
 		return false;
@@ -50,25 +52,6 @@ var contains_point = function(point,array){
 	return binary_contains(point,array);
 }
 
-var plot_point = function(x,y){
-
-	var grid = document.getElementById("test_id").children[0];
-	var x_point =  (x * 5) + 'px';
-	var y_point =  -(y * 5) + 'px';
-	grid.setProperty('box-shadow', x_point+" "+y_point+" #ffffff" );
-};
-
-var add_thing = function(){
-	
-	var test = document.getElementById("test_id");
-	test.style.color = 'red';
-	var grid_size = document.getElementById("grid_size").value * 5 ;
-
-	test.style.width = grid_size + 'px';
-	test.style.height = grid_size + 'px';
-	
-
-};
 
 
 var plot_point = function(array){
@@ -89,7 +72,7 @@ var plot_point = function(array){
 		
 		var x_point =  point['0'] * 5 + 'px';
 	    var y_point =  point['1'] * 5 + 'px';
-	    points += ( x_point +" "+y_point+" #ffffff" )
+	    points += ( x_point +" "+y_point+" black" )
 	};
 	grid.style.boxShadow=points;
 
@@ -107,7 +90,6 @@ var neighbors = function(x,y){
 			 [ x, ( y + 1 )],
 			 [ x, (y - 1)]]
 };
-
 
 
 var neighbors_count = function(x,y,cells){
@@ -131,7 +113,7 @@ var next_state = function(cells){
 
 	var next_states = [];
 	var cells = cells;
-	cells.sort(sortFunction);
+	
 	for (point in cells){
 
 
@@ -173,7 +155,7 @@ var next_state = function(cells){
 
 		};
 
-	return next_states
+	return next_states.sort(sortFunction);
 };
 
 var track_iteration = function(iteration){
@@ -216,10 +198,10 @@ var stop_sim = function() {
 
 
 var add_points = function(){
-	var user_input = document.getElementById("grid_size").value 
+	
 	var added_cells = document.getElementById("cells").value 
 
-	var grid_size = user_input > 70 ? user_input : 70;
+	var grid_size = 70;
 	var i;
 
 	for( i=0;i < added_cells; i++ ){
@@ -227,6 +209,7 @@ var add_points = function(){
 		 var y = Math.floor(Math.random() * (grid_size -1)) + 1;
 		test_inputs.push([x,y]);
 	};
+	test_inputs.sort(sortFunction);
 	plot_point(test_inputs);
 }
 
@@ -241,4 +224,3 @@ document.getElementById("add_cells").onclick=add_points;
 
 
 
-document.getElementById('test_button').onclick=add_thing;
