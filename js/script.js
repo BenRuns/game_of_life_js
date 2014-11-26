@@ -21,7 +21,6 @@ function sortFunction(a, b) {
 }
 
 
-
 function binary_contains(point,array){
 	if (array.length === 0){
 		return false;
@@ -121,8 +120,9 @@ var next_state = function(cells){
 			if (!contains_point(cells[point], next_states)){
 				 next_states.push(cells[point]);				
 			    };    
-			checked[[cells[point]]] = count;
+			
 		};
+		checked[[cells[point]]] = count;
 		var neighbor = neighbors(cells[point][0],cells[point][1]);		
 		for (item in neighbor) {
 			var xy = neighbor[item];
@@ -131,7 +131,6 @@ var next_state = function(cells){
 			   var cell_count = checked[[xy[0],xy[1]]];
 			   	if ( cell_count === 3 ){
 				 next_states.push(xy);
-
 			     };
 				
 			};
@@ -148,9 +147,9 @@ var track_iteration = function(iteration){
 	iteration_div.innerHTML =  iteration +" iterations";
 }
 
-var test_inputs = [];
- 
 
+
+var test_inputs = [];
 var intID;
 var next;
 
