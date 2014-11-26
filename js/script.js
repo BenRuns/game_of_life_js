@@ -1,10 +1,4 @@
-//to add a size
 
-// attach to click
-
-// get value
-
-// create element
 function sortFunction(a, b) {
     if (a[0] === b[0]) {
     	if (a[1] == b[1]){
@@ -47,6 +41,7 @@ function binary_contains(point,array){
 
 }
 
+
 var contains_point = function(point,array){
 	return binary_contains(point,array);
 }
@@ -56,7 +51,7 @@ var contains_point = function(point,array){
 var plot_point = function(array){
 	track_iteration()
 
-	var array = array;
+	var array = array === undefined ? [[]] : array;
 	var grid = document.getElementById("test_id").children[0];
 	var population_div = document.getElementById("population");
 	population_div.innerHTML = (array.length + " cells")
@@ -183,7 +178,7 @@ var add_points = function(){
 	var grid_size = 70;
 	var i;
 
-	for( i=0;i < added_cells; i++ ){
+	for( i=0; i < added_cells; i++ ){
 		 var x = Math.floor(Math.random() * (grid_size -1)) + 1;
 		 var y = Math.floor(Math.random() * (grid_size -1)) + 1;
 		test_inputs.push([x,y]);
