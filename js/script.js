@@ -78,6 +78,7 @@ var plot_point = function(array){
 
     };
 
+
 var neighbors = function(x,y){
 	var x = x;
 	var y = y;
@@ -113,7 +114,7 @@ var next_state = function(cells){
 
 	var next_states = [];
 	var cells = cells;
-	
+	var checked = {}
 	for (point in cells){
 
 
@@ -126,9 +127,11 @@ var next_state = function(cells){
 				 next_states.push(cells[point]);
 
 
+
 				
 				
 			    };
+			checked[[cells[point]]] = count;
 		};
 
 
@@ -140,9 +143,15 @@ var next_state = function(cells){
 		for (item in neighbor) {
 			next_states.sort(sortFunction);
 			var xy = neighbor[item];
+			if(checked[[xy[0],xy[1]]] === undefined){
+				checked[[xy[0],xy[1]]] = neighbors_count(xy[0],xy[1],cells);
+				
+			};
+			var cell_count = checked[[xy[0],xy[1]]];
 			
 
-			if ( neighbors_count(xy[0],xy[1], cells) === 3 ){
+
+			if ( cell_count === 3 ){
 
 				if (!contains_point(xy,next_states)){
 				 next_states.push(xy);
@@ -154,6 +163,9 @@ var next_state = function(cells){
 		    };
 
 		};
+	
+
+
 
 	return next_states.sort(sortFunction);
 };
@@ -176,10 +188,8 @@ var run_sim = function() {
 	track_iteration(x)
 
 
-	
-
-
-    intID = setInterval(function() { x = x +1;  plot_point(next); next = next_state(next); track_iteration(x); }, 10);
+    intID = setInterval(function() { x = x +1;  plot_point(next); 
+    	    next = next_state(next); track_iteration(x); }, 300);
 
 	
 
