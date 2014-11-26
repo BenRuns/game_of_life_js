@@ -198,6 +198,7 @@ var stop_sim = function() {
 
 
 var add_points = function(){
+
 	
 	var added_cells = document.getElementById("cells").value 
 
@@ -211,6 +212,7 @@ var add_points = function(){
 	};
 	test_inputs.sort(sortFunction);
 	plot_point(test_inputs);
+	track_iteration('0');
 }
 
 

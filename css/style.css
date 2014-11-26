@@ -20,7 +20,7 @@ nav{
 nav ul{
 	margin-left: -30px;
 }
-h1, h4{
+h1,h4,h5{
 	text-align: center;
 
 	
@@ -55,6 +55,8 @@ nav li:hover, button:hover{
 	background: grey;
 	border-top: 2px solid lightgrey;
 	border-left: 1px solid lightgrey;
+	border-bottom: 0;
+	border-right: 0;
 
 	
 
@@ -62,6 +64,7 @@ nav li:hover, button:hover{
 .container{
 	width:400px;
 	margin: auto;
+	border-radius: 5px;
 
 }
 
@@ -70,6 +73,7 @@ nav li:hover, button:hover{
 	position: absolute;;
 	background: rgba(45, 57, 125, 0.6);
 	border: black solid;
+	border-radius:5px;
 	
 	z-index: 2;
 	margin-left: -80px;
@@ -78,6 +82,7 @@ nav li:hover, button:hover{
 .dashboard input{
 	margin-left: 10px;
 	margin-top: 5px;
+	border-radius: 3px;
 
 	width: 40px;
 
