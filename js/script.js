@@ -116,57 +116,29 @@ var next_state = function(cells){
 	var cells = cells;
 	var checked = {}
 	for (point in cells){
-
-
 		var count = neighbors_count(cells[point][0],cells[point][1], cells);
-	
-
-		if (2 === count || count === 3 ){
-			
+		if (2 === count || count === 3 ){			
 			if (!contains_point(cells[point], next_states)){
-				 next_states.push(cells[point]);
-
-
-
-				
-				
-			    };
+				 next_states.push(cells[point]);				
+			    };    
 			checked[[cells[point]]] = count;
 		};
-
-
-		var neighbor = neighbors(cells[point][0],cells[point][1]);
-		
-		
-		
-		
+		var neighbor = neighbors(cells[point][0],cells[point][1]);		
 		for (item in neighbor) {
-			next_states.sort(sortFunction);
 			var xy = neighbor[item];
 			if(checked[[xy[0],xy[1]]] === undefined){
-				checked[[xy[0],xy[1]]] = neighbors_count(xy[0],xy[1],cells);
-				
-			};
-			var cell_count = checked[[xy[0],xy[1]]];
-			
-
-
-			if ( cell_count === 3 ){
-
-				if (!contains_point(xy,next_states)){
+			   checked[[xy[0],xy[1]]] = neighbors_count(xy[0],xy[1],cells);
+			   var cell_count = checked[[xy[0],xy[1]]];
+			   	if ( cell_count === 3 ){
 				 next_states.push(xy);
 
+			     };
 				
-				
-			    };
 			};
-		    };
 
 		};
-	
 
-
-
+	};
 	return next_states.sort(sortFunction);
 };
 
@@ -191,9 +163,9 @@ var run_sim = function() {
     intID = setInterval(function() { x = x +1;  plot_point(next); 
     	    next = next_state(next); track_iteration(x); }, 300);
 
-	
-
 	};
+
+
 var clear_sim = function() {
 	stop_sim();
 	test_inputs = [];
@@ -207,11 +179,8 @@ var stop_sim = function() {
 }
 
 
-var add_points = function(){
-
-	
+var add_points = function(){	
 	var added_cells = document.getElementById("cells").value 
-
 	var grid_size = 70;
 	var i;
 
