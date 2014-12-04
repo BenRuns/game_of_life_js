@@ -48,6 +48,10 @@ button{
 	border-bottom: 2px solid rgba(138,129,90,.7);
 	border-right: 1px solid rgba(138,129,90,.6);
 }
+
+#add_cells{
+	visibility: hidden;
+}
 nav li:hover, button:hover{
 	background: grey;
 	border-top: 2px solid lightgrey;

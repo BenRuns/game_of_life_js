@@ -1,6 +1,5 @@
 
-var game_of_life = function () {
-    "use strict";
+
 
 
     var sortFunction = function (a, b) {
@@ -17,6 +16,7 @@ var game_of_life = function () {
 
 
     var binary_contains = function (point, array) {
+
         if (array.length === 0) {
             return false;
         }
@@ -52,7 +52,6 @@ var game_of_life = function () {
 
 
     var plot_point = function (array) {
-        track_iteration();
 
         array = array === undefined ? [[]] : array;
         var grid = document.getElementById("test_id").children[0];
@@ -84,24 +83,24 @@ var game_of_life = function () {
                [(x - 1), (y - 1)],
                [(x + 1), (y - 1)],
                [(x - 1), (y + 1)],
-               [ x, (y + 1)],
-               [ x, (y - 1)]];
+               [x, (y + 1)],
+               [x, (y - 1)]];
     };
 
 
     var neighbors_count = function (x, y, cells) {
         //takes a sorted array
-        var count = 0;
+        var counter = 0;
         var to_check = neighbors(x, y);
         var i;
 
         for (i = 0; i < to_check.length; i += 1) {
             if (contains_point(to_check[i], cells)) {
-                count += 1;
+                counter += 1;
             }
         }
 
-        return count;
+        return counter;
     };
 
 
@@ -111,47 +110,58 @@ var game_of_life = function () {
         var next_states = [];
         var checked = {};
         var point, count, xy, i, neighbor, cell_count;
-        for (point in  cells) {
-            if (cells.hasOwnProperty(point)) {
 
-                count = neighbors_count(cells[point][0], cells[point][1], cells);
-                if (2 === count || count === 3) {
-                    if (!contains_point(cells[point], next_states)) {
-                        next_states.push(cells[point]);
-                    }
-
-                }
+        for (point = 0; point < cells.length; point += 1) {
+            count = checked.hasOwnProperty(cells[point]) ? checked[cells[point]] : neighbors_count(cells[point][0], cells[point][1], cells);
+            if (!checked.hasOwnProperty(cells[point])) {
                 checked[[cells[point]]] = count;
-                neighbor = neighbors(cells[point][0], cells[point][1]);
-                for (i = 0; i < neighbor.length; i += 1) {
-                    xy = neighbor[i];
-                    if (checked[[xy[0], xy[1]]] === undefined) {
-                        checked[[xy[0], xy[1]]] = neighbors_count(xy[0], xy[1], cells);
-                        cell_count = checked[[xy[0], xy[1]]];
-                        if (cell_count === 3) {
-                            next_states.push(xy);
-                        }
+            }
+            next_states.sort(sortFunction);
 
-                    }
+            if (count === 2 || count === 3) {
+                 next_states.sort(sortFunction);
 
+                if (!contains_point(cells[point],next_states)) {
+                    next_states.push(cells[point]);
                 }
+                
+            }
+
+            neighbor = neighbors(cells[point][0], cells[point][1]);
+
+            for (i = 0; i < neighbor.length ; i += 1) {
+                xy = neighbor[i]
+
+
+                if ( !checked.hasOwnProperty(xy) ) {
+                    checked[xy] = neighbors_count(xy[0], xy[1], cells);
+
+                    cell_count = checked[xy];
+                    
+                    if (cell_count === 3) {
+                        next_states.push(xy);   
+                    }
+                }
+
             }
 
         }
+        next_states.sort(sortFunction)
 
-        return next_states.sort(sortFunction);
+        return next_states;
     };
 
 
 
-    var test_inputs = [];
+    
     var intID;
-    var next;
+    
 
     var run_sim = function () {
-        next = test_inputs;
+        var next = add_points(document.getElementById("cells").value);
         var x = 0;
         track_iteration(x);
+
 
 
         intID = setInterval(function () {
@@ -165,20 +175,20 @@ var game_of_life = function () {
 
     var stop_sim = function () {
         clearInterval(intID);
-        test_inputs = next;
+
     };
 
 
     var clear_sim = function () {
         stop_sim();
-        test_inputs = [];
-        plot_point(test_inputs);
+        plot_point([]);
         track_iteration(0);
     };
 
 
 
-    var add_points = function () {
+    var add_points = function (value) {
+        var points = [];
         var added_cells = document.getElementById("cells").value;
         var grid_size = 70;
         var i, x, y;
@@ -186,22 +196,67 @@ var game_of_life = function () {
         for (i = 0; i < added_cells; i += 1) {
             x = Math.floor(Math.random() * (grid_size - 1)) + 1;
             y = Math.floor(Math.random() * (grid_size - 1)) + 1;
-            test_inputs.push([x, y]);
+            points.push([x, y]);
         }
-        test_inputs.sort(sortFunction);
-        plot_point(test_inputs);
-        track_iteration('0');
+        return points.sort(sortFunction)
     };
+    
 
 
-    add_points();
+    
 
     document.getElementById('start').onclick = run_sim;
     document.getElementById("stop").onclick = stop_sim;
     document.getElementById("clear").onclick = clear_sim;
 
     document.getElementById("add_cells").onclick = add_points;
-};
-game_of_life();
+
+// 12 * 12 = 144
+// 24 * 4 = 96
+// 8 * 3 = 24
+
+// 264 +4 
+
+//tests for next states
+//tests for sort function
+
+// xox
+// xox
+// xox
+//(1,0),(1,1),(1,2)
+
+//console.log("first test" ,next_state([[1,0],[1,1],[1,2]]) == [[0,1],[1,1],[2,1]] )
+
+// should return
+// xxx
+// ooo
+// xxx
+
+//(0,1),(1,1),(2,1)
+
+// xxx
+// xox
+// xox
+//[[1,0],[1,1]]
+
+// should return []
+// xxx
+// xxx
+// xxx
+
+// []
+
+// xxxxx
+// xoxox
+// xoxox
+// xoxox
+
+// next_state([[1,0],[1,1],[1,2],[3,0],[3,1],[3,2]])
+// should return  [[0,1],[1,1],[3,1],[4,1]]
+
+// xxxxx
+// xxxxx
+// ooxoo
+// xxxxx
 
 
