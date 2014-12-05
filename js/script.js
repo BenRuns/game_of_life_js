@@ -30,9 +30,7 @@
             if (sortFunction(point, middle) === -1) {
                 return binary_contains(point, array.slice(0, Math.floor(array.length / 2)));
             }
-
             return binary_contains(point, array.slice(Math.floor(array.length / 2)));
-
         }
 
         return false;
@@ -112,43 +110,35 @@
         var point, count, xy, i, neighbor, cell_count;
 
         for (point = 0; point < cells.length; point += 1) {
-            count = checked.hasOwnProperty(cells[point]) ? checked[cells[point]] : neighbors_count(cells[point][0], cells[point][1], cells);
+            count = checked.hasOwnProperty(cells[point]) ? checked[cells[point]][0] : neighbors_count(cells[point][0], cells[point][1], cells);
             if (!checked.hasOwnProperty(cells[point])) {
-                checked[[cells[point]]] = count;
+                checked[cells[point]] = [count,0];
             }
-            next_states.sort(sortFunction);
 
-            if (count === 2 || count === 3) {
-                 next_states.sort(sortFunction);
+            if ((count === 2 || count === 3) && (checked[cells[point]][1] === 0) ){
 
-                if (!contains_point(cells[point],next_states)) {
-                    next_states.push(cells[point]);
-                }
-                
+                next_states.push(cells[point]);
+                checked[cells[point]][1] = 1;
             }
 
             neighbor = neighbors(cells[point][0], cells[point][1]);
 
             for (i = 0; i < neighbor.length ; i += 1) {
-                xy = neighbor[i]
+                xy = neighbor[i];
+                if (!checked.hasOwnProperty(xy)) {
+                    checked[xy] = [neighbors_count(xy[0], xy[1], cells),0];
 
+                    cell_count = checked[xy][0];
 
-                if ( !checked.hasOwnProperty(xy) ) {
-                    checked[xy] = neighbors_count(xy[0], xy[1], cells);
-
-                    cell_count = checked[xy];
-                    
                     if (cell_count === 3) {
-                        next_states.push(xy);   
+                        next_states.push(xy); 
+                        checked[xy][1] = 1;  
                     }
                 }
-
             }
 
         }
-        next_states.sort(sortFunction)
-
-        return next_states;
+        return next_states.sort(sortFunction);
     };
 
 
@@ -211,11 +201,6 @@
 
     document.getElementById("add_cells").onclick = add_points;
 
-// 12 * 12 = 144
-// 24 * 4 = 96
-// 8 * 3 = 24
-
-// 264 +4 
 
 //tests for next states
 //tests for sort function
