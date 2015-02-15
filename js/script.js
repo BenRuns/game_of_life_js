@@ -1,6 +1,4 @@
-
-
-
+(function () {
 
     var sortFunction = function (a, b) {
         if (a[0] === b[0]) {
@@ -200,7 +198,7 @@
     document.getElementById("clear").onclick = clear_sim;
 
     document.getElementById("add_cells").onclick = add_points;
-
+})()
 
 //tests for next states
 //tests for sort function
