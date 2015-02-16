@@ -146,6 +146,7 @@
     
 
     var run_sim = function () {
+        clear_sim();
         var next = add_points(document.getElementById("cells").value);
         var x = 0;
         track_iteration(x);
