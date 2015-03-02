@@ -158,7 +158,7 @@
             plot_point(next);
             next = next_state(next);
             track_iteration(x);
-            }, 300);
+            }, 0);
 
     };
 
