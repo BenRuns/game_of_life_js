@@ -111,10 +111,14 @@
             count = checked.hasOwnProperty(cells[point]) ? checked[cells[point]][0] : neighbors_count(cells[point][0], cells[point][1], cells);
             if (!checked.hasOwnProperty(cells[point])) {
                 checked[cells[point]] = [count,0];
+                // The zero is added to help prevent duplicates fom the second for loop. The second for loop only adds to
+                // the new cells and existing if they are next to three cells. This caches the count but still allows 
+                // the below if statement to catch sustained cells that are next to 2 cells. This needs fixing but you forget why
+                // you did it this way at every attempt at refactoring.
             }
 
             if ((count === 2 || count === 3) && (checked[cells[point]][1] === 0) ){
-
+            
                 next_states.push(cells[point]);
                 checked[cells[point]][1] = 1;
             }
